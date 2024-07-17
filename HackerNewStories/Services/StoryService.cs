@@ -48,9 +48,9 @@ namespace HackerNewsStories.Services
         { 
             try
             {
-                var cacheKey = "newStories";
+                var cacheKey = $"newStories_{limit}";
                 _logger.LogInformation($"Fetching data for key: {cacheKey} from cache.");
-                if (!_cache.TryGetValue(cacheKey, out List<Story> stories) || stories.Count()!=limit)
+                if (!_cache.TryGetValue(cacheKey, out List<Story> stories))
                 {
                         _logger.LogInformation($"The data for key: {cacheKey} not found.");
                         var storiesBag = new ConcurrentBag<Story>();
